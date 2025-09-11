@@ -6,7 +6,7 @@ import {
   takeEvery,
   takeLatest,
 } from 'redux-saga/effects'
-import { tasksAPI } from '../../api/tasksAPI'
+import { tasksAPI } from '../../api/tasksApi'
 import {
   FetchTasksActions,
   fetchTasksFailure,
@@ -23,11 +23,16 @@ const selectFilters = (state) => state.tasks.filters
 export const fetchTasksSaga = function* () {
   const filters = yield select(selectFilters)
 
+  const normalizedFilters = {
+    ...(filters.status !== 'all' && { status: filters.status }),
+    ...(filters.assignee !== 'all' && { assignee: filters.assignee }),
+  }
+
   let attempts = 0
 
   while (attempts < 3) {
     try {
-      const tasks = yield call(tasksAPI.fetchTasks, filters)
+      const tasks = yield call(tasksAPI.fetchTasks, normalizedFilters)
       yield put(fetchTasksSuccess(tasks))
       return
     } catch (error) {
@@ -46,7 +51,8 @@ export const updateTaskStatusSaga = function* (action) {
   const { id, status } = action.payload
 
   // Find task to get its previous status for potential rollback
-  const task = yield select(selectAllTasks).find((t) => t.id === id)
+  const tasks = yield select(selectAllTasks)
+  const task = tasks.find((t) => t.id === id)
 
   const previousStatus = task ? task.status : null
 

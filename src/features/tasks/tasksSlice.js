@@ -2,7 +2,7 @@ import {
   FetchTasksActions,
   GeneralActions,
   UpdateTaskStatusActions,
-} from './tasksActionsTypes'
+} from './tasksActions'
 
 // ==================
 // Initial State
