@@ -1,4 +1,4 @@
-import { Box, Flex, Skeleton, Stack } from '@chakra-ui/react'
+import { Box, Flex, Stack } from '@chakra-ui/react'
 import { DueDate, Loading, TaskPriority, TaskStatusSelect } from '../../common'
 
 export const ListView = ({ tasks, loading }) => {

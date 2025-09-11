@@ -1,5 +1,4 @@
 import {
-  Box,
   Card,
   CardBody,
   CardFooter,
@@ -17,11 +16,17 @@ export const GridView = ({ tasks, loading }) => {
     <SimpleGrid columns={3} spacing={4}>
       {tasks?.map((task) =>
         loading ? (
-          <Card className="border border-teal-800 rounded-md p-10">
-            <Loading key={task.id} />
+          <Card
+            key={task.id}
+            className="border border-teal-800 rounded-md p-10"
+          >
+            <Loading />
           </Card>
         ) : (
-          <Card className="border !bg-teal-500/10 !border-teal-800 rounded-md">
+          <Card
+            key={task.id}
+            className="border !bg-teal-500/10 !border-teal-800 rounded-md"
+          >
             <CardHeader>
               <Flex align="start" justify="space-between">
                 <Heading size="sm" color="teal.700">

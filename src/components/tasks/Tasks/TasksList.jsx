@@ -19,6 +19,7 @@ export const TasksList = ({ view }) => {
 
   useEffect(() => {
     dispatch(fetchTasksRequest())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   if (error) {
@@ -39,7 +40,7 @@ export const TasksList = ({ view }) => {
     )
   }
 
-  if (!tasks || tasks.length === 0) {
+  if ((!tasks || tasks.length === 0) && !loading) {
     return (
       <Center py={10}>
         <Text color="gray.500">No tasks match the current filters.</Text>

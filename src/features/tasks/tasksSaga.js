@@ -10,6 +10,7 @@ import { tasksAPI } from '../../api/tasksApi'
 import {
   FetchTasksActions,
   fetchTasksFailure,
+  fetchTasksRequest,
   fetchTasksSuccess,
   GeneralActions,
   UpdateTaskStatusActions,
@@ -72,6 +73,7 @@ export const updateTaskStatusSaga = function* (action) {
 }
 
 function* handleFilterChangeSaga() {
+  yield put(fetchTasksRequest())
   yield delay(300)
   yield call(fetchTasksSaga)
 }

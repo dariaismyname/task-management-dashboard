@@ -1,19 +1,11 @@
 import { Container, Flex, Heading, VStack } from '@chakra-ui/react'
 import classNames from 'classnames'
-import { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useState } from 'react'
 import { TasksList } from '../Tasks'
+import { TaskFilters } from '../TaskFilters'
 
 export const TaskDashboard = () => {
-  // const dispatch = useDispatch()
-
-  // const error = useSelector((state) => state.tasks.error)
-
   const [isGridView, setIsGridView] = useState(true)
-
-  useEffect(() => {
-    // dispatch(fetchTasksRequest()
-  }, [])
 
   const toggleView = () => {
     setIsGridView((prev) => !prev)
@@ -43,7 +35,9 @@ export const TaskDashboard = () => {
             </span>
           </Flex>
         </Flex>
-        <Flex justify="flex-end">Filters</Flex>
+        <Flex justify="flex-end">
+          <TaskFilters />
+        </Flex>
         <TasksList view={isGridView ? 'grid' : 'list'} />
       </VStack>
     </Container>

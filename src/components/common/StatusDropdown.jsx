@@ -1,7 +1,6 @@
-import { Select, Skeleton } from '@chakra-ui/react'
-import { useDispatch, useSelector } from 'react-redux'
+import { Select } from '@chakra-ui/react'
+import { useDispatch } from 'react-redux'
 import { updateTaskStatusRequest } from '../../features/tasks/tasksActions'
-import { selectIsLoading } from '../../features/tasks/tasksSelectors'
 import classNames from 'classnames'
 
 const taskStatuses = {
